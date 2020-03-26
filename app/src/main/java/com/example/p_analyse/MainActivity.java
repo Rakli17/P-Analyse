@@ -21,10 +21,22 @@ public class MainActivity extends AppCompatActivity {
                 directToInfoActivity();
             }
         });
+
+        ((Button) findViewById(R.id.cameraButton)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                directToCameraActivity();
+            }
+        });
     }
 
     private void directToInfoActivity() {
         Intent intent = new Intent(this,Info.class);
+        startActivity(intent);
+    }
+
+    private void directToCameraActivity() {
+        Intent intent = new Intent(this,Camera.class);
         startActivity(intent);
     }
 
