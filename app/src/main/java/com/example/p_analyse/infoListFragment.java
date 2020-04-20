@@ -22,7 +22,7 @@ import java.util.Locale;
 public class infoListFragment extends ListFragment {
     OnInfoListSelectedListener mCallback;
 
-    public interface OnInfoListSelectedListener{
+    public interface OnInfoListSelectedListener {
         public void onInfoSelected(int position);
     }
 
@@ -32,9 +32,13 @@ public class infoListFragment extends ListFragment {
 
         int layout = Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB ?
                 android.R.layout.simple_list_item_activated_1 : android.R.layout.simple_list_item_1;
-        if( Locale.getDefault().toString().startsWith("s")) {
+        if (Locale.getDefault().toString().startsWith("s")) {
             setListAdapter(new ArrayAdapter<String>(getActivity(), layout, pInfo.infoHeadlinesSE));
             System.out.println("Svensk");
+        }
+        else if(Locale.getDefault().toString().startsWith("n")){
+            setListAdapter(new ArrayAdapter<String>(getActivity(), layout, pInfo.infoHeadlinesNO));
+            System.out.println("norsk");
         }
         else {
             setListAdapter(new ArrayAdapter<String>(getActivity(), layout, pInfo.infoHeadlinesDK));
@@ -46,7 +50,7 @@ public class infoListFragment extends ListFragment {
     public void onStart() {
         super.onStart();
 
-        if(getFragmentManager().findFragmentById(R.id.info_fragment) != null){
+        if (getFragmentManager().findFragmentById(R.id.info_fragment) != null) {
             getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         }
     }
@@ -55,21 +59,19 @@ public class infoListFragment extends ListFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        try{
+        try {
             mCallback = (OnInfoListSelectedListener) getActivity();
-        }catch (ClassCastException e){
+        } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + "must implement OnInfoListSelectedListener");
         }
     }
 
     @Override
-    public void onListItemClick(ListView l,View v, int position, long id) {
+    public void onListItemClick(ListView l, View v, int position, long id) {
         mCallback.onInfoSelected(position);
 
-        getListView().setItemChecked(position,true);
+        getListView().setItemChecked(position, true);
     }
-
-
 
 
 }

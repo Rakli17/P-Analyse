@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -21,13 +22,13 @@ public class infomation extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             mCurrentPosition = savedInstanceState.getInt(ARG_POSITION);
         }
 
-        textViewInfo = (TextView)inflater.inflate(R.layout.fragment_info_list,container,false);
+        textViewInfo = (TextView) inflater.inflate(R.layout.fragment_info_list, container, false);
 
-         return textViewInfo;
+        return textViewInfo;
     }
 
     @Override
@@ -35,9 +36,9 @@ public class infomation extends Fragment {
         super.onStart();
 
         Bundle args = getArguments();
-        if(args != null){
+        if (args != null) {
             updateInfoListView(args.getInt(ARG_POSITION));
-        }else if(mCurrentPosition != -1){
+        } else if (mCurrentPosition != -1) {
             updateInfoListView(mCurrentPosition);
         }
     }
@@ -48,16 +49,17 @@ public class infomation extends Fragment {
         outState.putInt(ARG_POSITION, mCurrentPosition);
     }
 
-    public void updateInfoListView(int position){
-        if(Locale.getDefault().toString().startsWith("s")){
+    public void updateInfoListView(int position) {
+        if (Locale.getDefault().toString().startsWith("s")) {
             textViewInfo.setText(pInfo.informationSE[position]);
             System.out.println("SVENSK");
-        }
-        else {
+        } else {
             textViewInfo.setText(pInfo.infomationDK[position]);
             System.out.println(Locale.getDefault().toString());
         }
         mCurrentPosition = position;
     }
+
+
 
 }

@@ -1,6 +1,8 @@
 package com.example.p_analyse;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,12 +11,13 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ((Button) findViewById(R.id.infomationButton)).setOnClickListener(new View.OnClickListener(){
+        ((Button) findViewById(R.id.infomationButton)).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -28,17 +31,31 @@ public class MainActivity extends AppCompatActivity {
                 directToCameraActivity();
             }
         });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.infoList_fragment);
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     private void directToInfoActivity() {
-        Intent intent = new Intent(this,Info.class);
+        System.out.println("5+5 = " + 5 + 5);
+        Intent intent = new Intent(this, Info.class);
         startActivity(intent);
     }
 
     private void directToCameraActivity() {
-        Intent intent = new Intent(this,Camera.class);
+        Intent intent = new Intent(this, Camera.class);
         startActivity(intent);
     }
 
-    public void finishActivity(){finish();}
+    public void finishActivity() {
+        finish();
+    }
 }
