@@ -3,6 +3,7 @@ package com.example.p_analyse;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.ListFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,16 +33,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.infoList_fragment);
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
     }
 
     private void directToInfoActivity() {

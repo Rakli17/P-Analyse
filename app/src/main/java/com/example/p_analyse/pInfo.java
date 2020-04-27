@@ -17,7 +17,7 @@ public class pInfo {
             "kvalitetskontrol ",
             "opbevaring 		",
             "metodebegraenser ",
-            "testoplysninger 	",
+            "testoplysninger: 	",
             "protein 			",
             "blod				",
             "leukocytter 		",
@@ -47,7 +47,7 @@ public class pInfo {
             "kvalitetskontroll",
             "Lagring",
             "metodbegränsare",
-            "testinformation",
+            "testinformation:",
             "Protein",
             "Blood",
             "Leukocyter",
@@ -75,7 +75,7 @@ public class pInfo {
             "kvalitetskontroll",
             "Storage",
             "metodebegrenser",
-            "testinformasjon",
+            "testinformasjon:",
             "Protein",
             "Blood",
             "Leukocytter",
@@ -154,7 +154,7 @@ public class pInfo {
 
     };
 
-    static String[] infomationDK = new String[]{
+    static String[] informationDK = new String[]{
             "Siemens Healthcare Diagnostics reagens-strimler til urinanalyse" +
                     "TILTÆNKT ANVENDELSE: Siemens Healthcare Diagnostics reagensstrimler til urinanalyse" +
                     "Indeholder testfelter til protein, blod, leukocytter, nitrat, glukose, keton (aceteddikesyre), pH, massefylde, bilirubin og urobilinogen. På æsken eller beholderen kan du se hvilke test,der er inkluderet i det produkt, du brum. Strimlerne er kun beregnet til professionel in vitro-diagnosticering. Læs indlægssedlen grundigt, før du bruger produktet.",
@@ -213,7 +213,7 @@ public class pInfo {
             "TEKNISK HJÆLP: Kontakt din lokale tekniske support, din distributør eller sundhedspersonalet for at få teknisk support. www.siemens.com/pocFor yderligere information," +
                     "kontakt din Siemens-repræsentant eller Kundeservice. Siemens Healthcare Diagnostics Inc. Sir William Siemens Square Frimley, Camberley Surrey. GU16 8QD UK Direct Telephone: +44 (0) 845 600 1955 Direct Fax: +44 (0) 1276 696 680 1"
     };
-    static String[] infomationNO = new String[]{
+    static String[] informationNO = new String[]{
             "Siemens Healthcare Diagnostics Reagent Strips for Urine Analysis" +
                     "FORSIKTIG BRUK: Siemens Healthcare Diagnostics Reagent Strips for Urine Analysis" +
                     "Inneholder testfelt for protein, blod, leukocytter, nitrat, glukose, keton (eddiksyre), pH, tetthet, bilirubin og urobilinogen. På esken eller beholderen kan du se hvilke tester som er inkludert i produktet du bjeffer. Strimlene er bare beregnet på profesjonell in vitro-diagnostikk. Les pakningsvedlegget nøye før du bruker produktet. ",

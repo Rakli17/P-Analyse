@@ -22,6 +22,7 @@ import java.util.Locale;
 public class infoListFragment extends ListFragment {
     OnInfoListSelectedListener mCallback;
 
+    // Kaldes af
     public interface OnInfoListSelectedListener {
         public void onInfoSelected(int position);
     }
@@ -68,10 +69,22 @@ public class infoListFragment extends ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        mCallback.onInfoSelected(position);
+        if(position == 9){}
+        else if (position > 9) {
+            position = position - 1;
+            mCallback.onInfoSelected(position);
 
-        getListView().setItemChecked(position, true);
+            getListView().setItemChecked(position, true);
+        } else {
+            position = position;
+            mCallback.onInfoSelected(position);
+
+            getListView().setItemChecked(position, true);
+        }
+
     }
+
+
 
 
 }

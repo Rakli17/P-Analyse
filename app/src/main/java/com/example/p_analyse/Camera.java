@@ -46,18 +46,19 @@ public class Camera extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-
-//        Bitmap bit32 = bitmap.copy(Bitmap.Config.ARGB_8888,true);
-//        Mat mat = new Mat();
-//        Mat gray = new Mat();
+        Mat mat = (Mat) data.getExtras().get("data");
+        Bitmap bit32 = bitmap.copy(Bitmap.Config.ARGB_8888,true);
+        //Mat mat = new Mat();
+        Mat gray = new Mat();
 //        Mat circles = new Mat();
 //        Utils.bitmapToMat(bit32,mat);
-//        Imgproc.cvtColor(mat,gray,Imgproc.COLOR_BGR2GRAY);
-//
-//
-//
-//        Utils.matToBitmap(gray,bit32);
-        imageView.setImageBitmap(bitmap);
+        Imgproc.cvtColor(mat,gray,Imgproc.COLOR_BGR2GRAY);
+
+
+
+        Utils.matToBitmap(gray,bit32);
+
+        imageView.setImageBitmap(bit32);
 
     }
 }
