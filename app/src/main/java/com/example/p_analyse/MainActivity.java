@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void directToInfoActivity() {
-        System.out.println("5+5 = " + 5 + 5);
         Intent intent = new Intent(this, Info.class);
         startActivity(intent);
     }

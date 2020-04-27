@@ -22,16 +22,22 @@ public class Info extends AppCompatActivity implements infoListFragment.OnInfoLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.infomationslist);
 
+        // kigger på om activity bruger layoutet med fragment containeren framelayout hvis dette er tilfældet måd er tilføjes den første fragment.
         if (findViewById(R.id.fragment_container) != null) {
 
+            // dog hvis den bliver restored fra tidligere skal vi ikke gøre noget da vi ellers vil kunne komme til at at overlappe fragmenterne.
             if (savedInstanceState != null) {
                 return;
             }
 
+            //skaber in instans af fragment
             infoListFragment firstFragment = new infoListFragment();
 
+            // hvis denne activity er started med special instructioner for eksemple ved en intent
+            // gives intentens ekstra videre til fragmentet som et argument.
             firstFragment.setArguments(getIntent().getExtras());
 
+            //tilføjer fragmentet til container framelayoutet
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, firstFragment).commit();
         }
     }
@@ -52,18 +58,25 @@ public class Info extends AppCompatActivity implements infoListFragment.OnInfoLi
 
     @Override
     public void onInfoSelected(int position) {
+
+        // brugeren har valgt en information fra infolistFragment
+        // Capture the article fragment from the activity layout
         infomation infoListfrag = (infomation) getSupportFragmentManager().findFragmentById(R.id.info_fragment);
 
-
+        // hvis information fragment er available er vi i two-pane layout altså tablet tilstand
         if (infoListfrag != null) {
+            // kalder metode fra informations fragmentet til at updatere dets information.
             infoListfrag.updateInfoListView(position);
+        // hvis devices er one-pane device skal der skiftes fragments.
         } else {
-
+            // creates an fragment and give it an argumant for the selected information
             infomation newInfoList = new infomation();
             Bundle args = new Bundle();
             args.putInt(infomation.ARG_POSITION, position);
             newInfoList.setArguments(args);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            // replacere hvad der er i containeren viewet med denne fragment og tilføjer transationen i backstacken så brugeren kan navigere tilbage.
+            // og tilsidst comitter vi vores transaction.
             transaction.replace(R.id.fragment_container, newInfoList);
             transaction.addToBackStack(null);
             transaction.commit();

@@ -18,11 +18,12 @@ import android.widget.ListView;
 
 import java.util.Locale;
 
-
+// container activity skal implementere dette interface for at fragmenterne kan gi ve beskeder.
+// derfor er denne klasse implementeret i Info.class
 public class infoListFragment extends ListFragment {
     OnInfoListSelectedListener mCallback;
 
-    // Kaldes af
+    // Kaldes af infoList fragmentet når en information er valgt
     public interface OnInfoListSelectedListener {
         public void onInfoSelected(int position);
     }
@@ -31,8 +32,11 @@ public class infoListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        int layout = Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB ?
-                android.R.layout.simple_list_item_activated_1 : android.R.layout.simple_list_item_1;
+
+        int layout = android.R.layout.simple_list_item_1;
+
+        //igen skal der kigges på sproget for at fast sætte hvilket sprog device er sat op til igen er det fordi vi snakker om statiske variabler
+        // default er opsat til dansk
         if (Locale.getDefault().toString().startsWith("s")) {
             setListAdapter(new ArrayAdapter<String>(getActivity(), layout, pInfo.infoHeadlinesSE));
             System.out.println("Svensk");
@@ -51,6 +55,8 @@ public class infoListFragment extends ListFragment {
     public void onStart() {
         super.onStart();
 
+        // When in two-pane layout, set the listview to highlight the selected list item
+        // (We do this during onStart because at the point the listview is available.)
         if (getFragmentManager().findFragmentById(R.id.info_fragment) != null) {
             getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         }
@@ -60,6 +66,7 @@ public class infoListFragment extends ListFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
+        //denne sikre at container activiteten her implementeret callback interfacet, hvis ikke bliver der kastet med en exception.
         try {
             mCallback = (OnInfoListSelectedListener) getActivity();
         } catch (ClassCastException e) {
@@ -69,11 +76,14 @@ public class infoListFragment extends ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
+        // da der på plads 9 i arrayet er et navnet Test Information: som ikke kan trykkes på da dette bare betyder at herfra og ned kommer der
+        // mere specifik test information. derfor skere der ikke noget ved at trykke på denne i informationen.
         if(position == 9){}
         else if (position > 9) {
             position = position - 1;
+            // notificere parent activityen omkring det valgte information
             mCallback.onInfoSelected(position);
-
+            // sætter det valgte til at være highlighted når man er i tablet tilstand
             getListView().setItemChecked(position, true);
         } else {
             position = position;
