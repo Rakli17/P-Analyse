@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Camera"></activity>
+        <activity android:name=".timer"></activity>
+        <activity android:name=".introToNewTest" />
+        <activity android:name=".Camera" />
         <activity android:name=".Info" />
         <activity android:name=".MainActivity">
             <intent-filter>
