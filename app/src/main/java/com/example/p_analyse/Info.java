@@ -44,11 +44,19 @@ public class Info extends AppCompatActivity implements infoListFragment.OnInfoLi
 
     @Override
     public void onBackPressed() {
+        //An instance of the android.app.FragmentManager class takes care of your app’s fragments.
+        //The manager also helps you fiddle with your activity’s back stack.
+
+        //returnere fragmentmanageren til at inteagere med fragmenter tilhørende med denne activitet.
         FragmentManager fragmentManager = getFragmentManager();
+        // finder fragmentet
         Fragment fragment = fragmentManager.findFragmentById(R.id.infomation);
         if (fragment != null) {
+            //FragmentManager which is used to create transactions for adding, removing or replacing fragments.
             android.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+            // bruges til at fjerne et fragment fra  back stacken
             transaction.remove(fragment);
+            // comitter den valgte transaction 
             transaction.commit();
         } else {
             super.onBackPressed();
