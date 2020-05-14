@@ -9,6 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import org.opencv.android.OpenCVLoader;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +20,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (OpenCVLoader.initDebug())
+        {
+            Toast.makeText(getApplicationContext(),"openCV loaded",Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(),"openCV CRASHHHHHHHHH",Toast.LENGTH_SHORT).show();
+        }
 
         ((Button) findViewById(R.id.infomationButton)).setOnClickListener(new View.OnClickListener() {
 

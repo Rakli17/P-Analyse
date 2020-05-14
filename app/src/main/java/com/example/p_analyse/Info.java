@@ -56,7 +56,7 @@ public class Info extends AppCompatActivity implements infoListFragment.OnInfoLi
             android.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
             // bruges til at fjerne et fragment fra  back stacken
             transaction.remove(fragment);
-            // comitter den valgte transaction 
+            // comitter den valgte transaction
             transaction.commit();
         } else {
             super.onBackPressed();
@@ -87,6 +87,7 @@ public class Info extends AppCompatActivity implements infoListFragment.OnInfoLi
             // og tilsidst comitter vi vores transaction.
             transaction.replace(R.id.fragment_container, newInfoList);
             transaction.addToBackStack(null);
+
             transaction.commit();
         }
     }

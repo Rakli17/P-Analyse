@@ -8,19 +8,25 @@
     android:weightSum="10"
     tools:context=".Camera">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/pictureView"
-        android:layout_weight="9"
+    <org.opencv.android.JavaCameraView
+        android:id="@+id/mycamera"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"/>
+        android:layout_height="1183dp"
+        app:show_fps="true" />
+<!--    <androidx.appcompat.widget.AppCompatImageView-->
+<!--        android:id="@+id/pictureView"-->
+<!--        android:layout_weight="9"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="fill_parent"/>-->
 
     <Button
         android:id="@+id/btnCamera"
-        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
+        android:layout_height="99dp"
+        android:layout_weight="1"
         android:background="@android:color/holo_blue_dark"
-        android:text="open camera"
-        />
+        android:text="@string/analyseStrip"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        android:textColor="@android:color/white" />
+
 </LinearLayout>
