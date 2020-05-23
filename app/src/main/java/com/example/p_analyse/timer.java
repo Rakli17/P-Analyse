@@ -2,6 +2,7 @@ package com.example.p_analyse;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.widget.TextView;
@@ -10,7 +11,7 @@ import java.util.Locale;
 
 public class timer extends AppCompatActivity {
 
-    private static final long Start_time = 600000;
+    private static final long Start_time = 6000;
 
     private TextView mTextViewTimer;
     private CountDownTimer mContdownTimer;
@@ -25,23 +26,25 @@ public class timer extends AppCompatActivity {
         mTextViewTimer = findViewById(R.id.tvTimer);
 
         updateCountDownText();
+        startTimer();
     }
 
     private void startTimer() {
-       mContdownTimer = new CountDownTimer(mTimeLeft, 1000) {
-           @Override
-           public void onTick(long millisUntilFinished) {
-               mTimeLeft = millisUntilFinished;
-               updateCountDownText();
-           }
+        mContdownTimer = new CountDownTimer(mTimeLeft, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTimeLeft = millisUntilFinished;
+                updateCountDownText();
+            }
 
-           @Override
-           public void onFinish() {
-            mTimerIsRunning = false;
+            @Override
+            public void onFinish() {
+                mTimerIsRunning = false;
+                directToCameraActivity();
 
-           }
-       }.start();
-       mTimerIsRunning = true;
+            }
+        }.start();
+        mTimerIsRunning = true;
 
     }
 
@@ -60,5 +63,9 @@ public class timer extends AppCompatActivity {
         mTextViewTimer.setText(timeLeftFormatted);
     }
 
+    private void directToCameraActivity() {
+        Intent intent = new Intent(this, Camera.class);
+        startActivity(intent);
+    }
 
 }

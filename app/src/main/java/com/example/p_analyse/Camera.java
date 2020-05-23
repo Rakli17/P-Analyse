@@ -52,12 +52,12 @@ public class Camera extends AppCompatActivity {
         Mat mat = (Mat) data.getExtras().get("data");
         Bitmap bit32 = bitmap.copy(Bitmap.Config.ARGB_8888,true);
         //Mat mat = new Mat();
-        Mat gray = new Mat();
+       // Mat gray = new Mat();
 //        Mat circles = new Mat();
 //        Utils.bitmapToMat(bit32,mat);
-        Imgproc.cvtColor(mat,gray,Imgproc.COLOR_BGR2GRAY);
+       // Imgproc.cvtColor(mat,gray,Imgproc.COLOR_BGR2GRAY);
 
-        Utils.matToBitmap(gray,bit32);
+       // Utils.matToBitmap(gray,bit32);
 
         //  imageView.setImageBitmap(bit32);
         numberOfPicture = numberOfPicture + 1;
