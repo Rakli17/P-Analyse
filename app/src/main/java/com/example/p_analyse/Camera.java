@@ -18,12 +18,15 @@ import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
+import java.util.Timer;
+
 import static org.opencv.imgproc.Imgproc.HoughCircles;
 import static org.opencv.imgproc.Imgproc.cvtColor;
 
 public class Camera extends AppCompatActivity {
 
     ImageView imageView;
+    int numberOfPicture = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +57,28 @@ public class Camera extends AppCompatActivity {
 //        Utils.bitmapToMat(bit32,mat);
         Imgproc.cvtColor(mat,gray,Imgproc.COLOR_BGR2GRAY);
 
-
-
         Utils.matToBitmap(gray,bit32);
 
-        imageView.setImageBitmap(bit32);
+        //  imageView.setImageBitmap(bit32);
+        numberOfPicture = numberOfPicture + 1;
+        if (numberOfPicture == 3) {
+            directToResultActivity();
+            numberOfPicture = 0;
+        }
+        else {
+            directToTimerActivity();
+        }
 
     }
+
+    private void directToTimerActivity() {
+        Intent intent = new Intent(this, timer.class);
+        startActivity(intent);
+    }
+
+    private void directToResultActivity() {
+        Intent intent = new Intent(this, result.class);
+        startActivity(intent);
+    }
+
 }

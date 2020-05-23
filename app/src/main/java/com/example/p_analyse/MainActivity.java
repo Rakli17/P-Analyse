@@ -33,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ((Button) findViewById(R.id.timerButton)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                directToTimerActivity();
+            }
+        });
+
     }
 
     private void directToInfoActivity() {
@@ -42,6 +49,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void directToCameraActivity() {
         Intent intent = new Intent(this, Camera.class);
+        startActivity(intent);
+    }
+
+
+    private void directToTimerActivity() {
+        Intent intent = new Intent(this, timer.class);
         startActivity(intent);
     }
 
