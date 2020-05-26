@@ -28,15 +28,8 @@ public class ViewSampleClass extends AppCompatActivity {
 
         Log.d(TAG, "onCreate: displayactivity ");
 
-
-
-
         rv = (RecyclerView) findViewById(R.id.recycleView);
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-
-
-
-
 
         dataList = new ArrayList<>();
         dataList = mSamplehelper.getAllInfo();

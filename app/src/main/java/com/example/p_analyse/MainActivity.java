@@ -40,13 +40,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ((Button) findViewById(R.id. preSamBtn)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                directToPreviousSampleActivity();
+            }
+        });
     }
 
     private void directToInfoActivity() {
         Intent intent = new Intent(this, Info.class);
         startActivity(intent);
     }
-
+    private void directToPreviousSampleActivity() {
+        Intent intent = new Intent(this, ViewSampleClass.class);
+        startActivity(intent);
+    }
     private void directToCameraActivity() {
         Intent intent = new Intent(this, Camera.class);
         startActivity(intent);
