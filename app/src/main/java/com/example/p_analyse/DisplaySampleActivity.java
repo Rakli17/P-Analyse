@@ -24,7 +24,8 @@ public class DisplaySampleActivity extends AppCompatActivity {
         //Type object = (Type) bundle.getSerializable("KEY");
         // Data data = (Data) bundle.getSerializable("KEY");
 
-        if(getIntent().hasExtra("NameKey") && getIntent().hasExtra("DateKey")
+        if(getIntent().hasExtra("nameKey")
+                && getIntent().hasExtra("nateKey")
                 && getIntent().hasExtra("leuKey")
                 && getIntent().hasExtra("proKey")
                 && getIntent().hasExtra("bloKey")
