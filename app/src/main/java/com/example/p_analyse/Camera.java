@@ -23,7 +23,7 @@ import java.util.Timer;
 import static org.opencv.imgproc.Imgproc.HoughCircles;
 import static org.opencv.imgproc.Imgproc.cvtColor;
 
-public class Camera extends AppCompatActivity {
+public class  Camera extends AppCompatActivity {
 
     ImageView imageView;
     int numberOfPicture = 0;

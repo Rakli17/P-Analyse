@@ -24,14 +24,14 @@ public class DisplaySampleActivity extends AppCompatActivity {
         //Type object = (Type) bundle.getSerializable("KEY");
         // Data data = (Data) bundle.getSerializable("KEY");
 
-        if(getIntent().hasExtra("nameKey")
+      /*  if(getIntent().hasExtra("nameKey")
                 && getIntent().hasExtra("nateKey")
                 && getIntent().hasExtra("leuKey")
                 && getIntent().hasExtra("proKey")
                 && getIntent().hasExtra("bloKey")
                 && getIntent().hasExtra("gluKey")
                 && getIntent().hasExtra("nitKey")
-        ){
+        )*/
             String name = getIntent().getStringExtra("nameKey");
             String date = getIntent().getStringExtra("dateKey");
             String leu = getIntent().getStringExtra("leuKey");
@@ -59,6 +59,6 @@ public class DisplaySampleActivity extends AppCompatActivity {
             mGlu.setText(glu);
             mNit.setText(nit);
 
-        }
+
     }
 }

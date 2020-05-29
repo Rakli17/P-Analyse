@@ -10,14 +10,14 @@ public class SampleClass implements Serializable{
     public SampleClass(){}
 
     public SampleClass(String name, String date, int leu, int pro, int blo, int glu, int nit){
-
+        this.mName = name;
         this.mDate = date;
         this.mLeu = leu;
         this.mPro = pro;
         this.mBlo = blo;
         this.mGlu = glu;
         this.mNit = nit;
-        this.mName = name;
+
 
     }
     public String getName() {
@@ -27,6 +27,17 @@ public class SampleClass implements Serializable{
     public void setName(String mName) {
         this.mName = mName;
     }
+
+    public String getDate() {
+        return mDate;
+    }
+
+    public void setDate(String mDate) {
+        this.mDate = mDate;
+    }
+
+
+
     public int getLeu() {
         return mLeu;
     }
@@ -67,11 +78,5 @@ public class SampleClass implements Serializable{
         this.mNit = mNit;
     }
 
-    public String getDate() {
-        return mDate;
-    }
 
-    public void setDate(String mDate) {
-        this.mDate = mDate;
-    }
 }
