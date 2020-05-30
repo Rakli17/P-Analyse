@@ -1,5 +1,8 @@
 package com.example.p_analyse;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
 public class RandomSample {
@@ -133,5 +136,6 @@ public class RandomSample {
         tempSample.add(s);
         return s;
     }
+
 
 }
