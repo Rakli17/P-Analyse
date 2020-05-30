@@ -74,7 +74,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("gluKey", gluList.get(position));
                 intent.putExtra("nitKey", nitList.get(position));
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
+                mContext.startActivity(intent);
 
             }
         });

@@ -125,15 +125,22 @@ class SampleHelper {
     }
 
     //slet data
-    public void deleteName(String name, String date)
+    public void deleteSample(SampleClass p)
     {
         SQLiteDatabase db = mSampleHelper.getWritableDatabase();
-        String query = "DELETE FROM " + addSampleClass.NewSampleInfo.TABLE_NAME + " WHERE "
-                + addSampleClass.NewSampleInfo.NAME + " = '" + name + "'" +
-                " AND " + addSampleClass.NewSampleInfo.DATE + " = '" + date + "'";
 
+        Integer iLeu = new Integer(p.getLeu());
+        String query = "DELETE FROM " + addSampleClass.NewSampleInfo.TABLE_NAME + " WHERE "
+                + addSampleClass.NewSampleInfo.NAME + " = '" + p.getName() + "'" +
+                " AND " + addSampleClass.NewSampleInfo.DATE + " = '" + p.getDate() + "'" +
+                " AND " + addSampleClass.NewSampleInfo.LEU + " = '" +  p.getLeu() + "'" +
+                " AND " + addSampleClass.NewSampleInfo.PRO + " = '" + p.getPro() + "'" +
+                " AND " + addSampleClass.NewSampleInfo.BLO + " = '" + p.getBlo() + "'" +
+                " AND " + addSampleClass.NewSampleInfo.GLU + " = '" + p.getGlu() + "'" +
+                " AND " + addSampleClass.NewSampleInfo.NIT + " = '" + p.getNit() +
+                "'";
         Log.d("DatabaseHelper", "deleteName: query " + query);
-        Log.d("DatabaseHelper", "deleteName: Deleting " + name + " From database " );
+        Log.d("DatabaseHelper", "deleteName: Deleting " + p.getName() + " From database " );
         db.execSQL(query);
     }
 

@@ -1,6 +1,7 @@
 package com.example.p_analyse;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,7 @@ public class ViewSampleClass extends AppCompatActivity {
     RecyclerView rv;
     ArrayList<SampleClass> dataList;
     SampleHelper mSamplehelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,21 +43,27 @@ public class ViewSampleClass extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 RandomSample r = new RandomSample();
-                SampleClass data = new SampleClass(r.createName(), r.createDate(), r.createLeu(), r.createPro(), r.createBlo(),r.createGlu(), r.createNit());
-
-                if(mSamplehelper.addSample(data)){
+                SampleClass data = new SampleClass(r.createName(), r.createDate(), r.createLeu(), r.createPro(), r.createBlo(), r.createGlu(), r.createNit());
+                if (mSamplehelper.addSample(data)) {
                     toastMessage("New sample created");
-                    mSamplehelper.updatePerson(data);
-                }else{
+                    //mSamplehelper.updatePerson(data);
+                } else {
                     toastMessage("Could not create new sample");
                 }
+                directToPreviousSampleActivity();
 
             }
         });
 
     }
+
     private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
+    }
+
+    private void directToPreviousSampleActivity() {
+        Intent intent = new Intent(this, ViewSampleClass.class);
+        startActivity(intent);
     }
 }
