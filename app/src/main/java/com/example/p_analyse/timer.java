@@ -26,6 +26,9 @@ public class timer extends AppCompatActivity {
 
     RandomSample randomSample;
 
+    //create Thread
+    Thread analyseThread;
+
 
 
     @Override

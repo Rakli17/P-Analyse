@@ -11,9 +11,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".timer"></activity>
         <activity android:name=".result"></activity>
+        <activity android:name=".introToNewTest"></activity>
         <activity android:name=".ViewSampleClass" />
         <activity android:name=".DisplaySampleActivity" />
-        <activity android:name=".introToNewTest" />
         <activity android:name=".Camera" />
         <activity android:name=".Info" />
         <activity android:name=".MainActivity">

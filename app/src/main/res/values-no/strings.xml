@@ -3,8 +3,11 @@
     <string name="information">Informasjon</string>
     <string name="Test">Test</string>
     <string name="back">Tilbake</string>
-    <string name="previousSamples">Tidligere Prøver</string>
-    <string name="DeleteSample">Slett Prøve</string>
-    <string name="BackToMain">Hovedmeny</string>
-
+    <string name="start">start</string>
+    <string name="intro">   "GUIDE TESTING "
+                    "1. Dypp alle testfeltene på stripen i urinen og registrer teststrimmelen øyeblikkelig igjen. Begynn timingen om stripen er visuelt lest. MERKNAD: ID-båndet kan dyppes i urin og kontrollløsninger. "
+                    "2. Trekk kanten på strimmelen mot kanten av urinbeholderen for å fjerne overflødig urin. Og la kanten dryppe på et papirhåndkle eller papirhåndkle hvis CLINITEK 50 eller CLINITEK Status® Analyzers brukes. Drypp er ikke nødvendig for visuell lesing eller bruk. CLINITEK Advantus® Analyzer. "
+                    "3.	trykk Start ",</string>
+    <string name="save">lagre og lukk</string>
+    <string name="exit">lukk</string>
 </resources>

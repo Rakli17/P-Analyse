@@ -60,7 +60,7 @@ public int mCount = 0;
 
 
     private void directToTimerActivity() {
-        Intent intent = new Intent(this, timer.class);
+        Intent intent = new Intent(this, introToNewTest.class);
         startActivity(intent);
     }
 
