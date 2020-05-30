@@ -68,14 +68,9 @@ public class DisplaySampleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                SampleClass data = new SampleClass(r.createName(), r.createDate(), r.createLeu(), r.createPro(), r.createBlo(),r.createGlu(), r.createNit());
+                
 
-                if(mSamplehelper.addSample(data)){
-                    toastMessage("New sample created");
-                    mSamplehelper.updatePerson(data);
-                }else{
-                    toastMessage("Could not create new sample");
-                }
+
 
             }
         });
