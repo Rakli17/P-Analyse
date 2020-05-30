@@ -26,7 +26,7 @@ import static org.opencv.imgproc.Imgproc.cvtColor;
 public class Camera extends AppCompatActivity {
 
     ImageView imageView;
-    int numberOfPicture = 0;
+   // int numberOfPicture = getIntent().getIntExtra("countKey",0);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +49,8 @@ public class Camera extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-        Mat mat = (Mat) data.getExtras().get("data");
-        Bitmap bit32 = bitmap.copy(Bitmap.Config.ARGB_8888,true);
+       // Mat mat = (Mat) data.getExtras().get("data");
+        //Bitmap bit32 = bitmap.copy(Bitmap.Config.ARGB_8888,true);
         //Mat mat = new Mat();
        // Mat gray = new Mat();
 //        Mat circles = new Mat();
@@ -60,25 +60,17 @@ public class Camera extends AppCompatActivity {
        // Utils.matToBitmap(gray,bit32);
 
         //  imageView.setImageBitmap(bit32);
-        numberOfPicture = numberOfPicture + 1;
-        if (numberOfPicture == 3) {
-            directToResultActivity();
-            numberOfPicture = 0;
-        }
-        else {
+
             directToTimerActivity();
-        }
+
 
     }
 
     private void directToTimerActivity() {
         Intent intent = new Intent(this, timer.class);
+      //  intent.putExtra("numberOfPictureKey",numberOfPicture);
         startActivity(intent);
     }
 
-    private void directToResultActivity() {
-        Intent intent = new Intent(this, result.class);
-        startActivity(intent);
-    }
 
 }

@@ -11,12 +11,15 @@ import java.util.Locale;
 
 public class timer extends AppCompatActivity {
 
-    private static final long Start_time = 6000;
+    private static final long Start_time = 2000;
 
     private TextView mTextViewTimer;
     private CountDownTimer mContdownTimer;
     private Boolean mTimerIsRunning;
     private long mTimeLeft = Start_time;
+    private int mCount = 0;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +29,9 @@ public class timer extends AppCompatActivity {
         mTextViewTimer = findViewById(R.id.tvTimer);
 
         updateCountDownText();
+
         startTimer();
+
     }
 
     private void startTimer() {
@@ -40,6 +45,12 @@ public class timer extends AppCompatActivity {
             @Override
             public void onFinish() {
                 mTimerIsRunning = false;
+                if (mCount == 2 ) {
+                    directToResultActivity();
+                    mCount = 0;
+                }
+                else
+                    mCount ++;
                 directToCameraActivity();
 
             }
@@ -67,5 +78,12 @@ public class timer extends AppCompatActivity {
         Intent intent = new Intent(this, Camera.class);
         startActivity(intent);
     }
+
+    private void directToResultActivity() {
+        Intent intent = new Intent(this, DisplaySampleActivity.class);
+        startActivity(intent);
+    }
+
+
 
 }
