@@ -2,6 +2,7 @@ package com.example.p_analyse;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.widget.TextView;
@@ -10,12 +11,15 @@ import java.util.Locale;
 
 public class timer extends AppCompatActivity {
 
-    private static final long Start_time = 600000;
+    private static final long Start_time = 2000;
 
     private TextView mTextViewTimer;
     private CountDownTimer mContdownTimer;
     private Boolean mTimerIsRunning;
     private long mTimeLeft = Start_time;
+    private int mCount = 0;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,23 +29,33 @@ public class timer extends AppCompatActivity {
         mTextViewTimer = findViewById(R.id.tvTimer);
 
         updateCountDownText();
+
+        startTimer();
+
     }
 
     private void startTimer() {
-       mContdownTimer = new CountDownTimer(mTimeLeft, 1000) {
-           @Override
-           public void onTick(long millisUntilFinished) {
-               mTimeLeft = millisUntilFinished;
-               updateCountDownText();
-           }
+        mContdownTimer = new CountDownTimer(mTimeLeft, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTimeLeft = millisUntilFinished;
+                updateCountDownText();
+            }
 
-           @Override
-           public void onFinish() {
-            mTimerIsRunning = false;
+            @Override
+            public void onFinish() {
+                mTimerIsRunning = false;
+                if (mCount == 2 ) {
+                    directToResultActivity();
+                    mCount = 0;
+                }
+                else
+                    mCount ++;
+                directToCameraActivity();
 
-           }
-       }.start();
-       mTimerIsRunning = true;
+            }
+        }.start();
+        mTimerIsRunning = true;
 
     }
 
@@ -59,6 +73,17 @@ public class timer extends AppCompatActivity {
 
         mTextViewTimer.setText(timeLeftFormatted);
     }
+
+    private void directToCameraActivity() {
+        Intent intent = new Intent(this, Camera.class);
+        startActivity(intent);
+    }
+
+    private void directToResultActivity() {
+        Intent intent = new Intent(this, DisplaySampleActivity.class);
+        startActivity(intent);
+    }
+
 
 
 }
