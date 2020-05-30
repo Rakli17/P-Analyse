@@ -13,16 +13,15 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class timer extends AppCompatActivity {
-
-    private static final long Start_time = 2000;
+    // sætter timer længden
+    private static final long Start_time = 10000;
 
     private TextView mTextViewTimer;
     private CountDownTimer mContdownTimer;
     private Boolean mTimerIsRunning;
     private long mTimeLeft = Start_time;
     private int mCount = 0;
-    ArrayList<SampleClass> dataList;
-    SampleHelper mSamplehelper;
+
 
     RandomSample randomSample;
 
@@ -50,6 +49,7 @@ public class timer extends AppCompatActivity {
 
     }
 
+    // starter timer
     private void startTimer() {
         mContdownTimer = new CountDownTimer(mTimeLeft, 1000) {
             @Override
@@ -57,12 +57,13 @@ public class timer extends AppCompatActivity {
                 mTimeLeft = millisUntilFinished;
                 updateCountDownText();
             }
-
+            // når timeren er færdig kigger den efter hvormange gange den har kørt
+            // når der er taget 3 billeder kalder den den metoden direct(randomeSample)
+            // ellers kalder den camera activity.
             @Override
             public void onFinish() {
                 mTimerIsRunning = false;
                 if (mCount == 2 ) {
-                    System.out.println("JEG ER HER");
                     directToResultActivity(randomSample);
                     mCount = 0;
                 }
@@ -77,7 +78,7 @@ public class timer extends AppCompatActivity {
     }
 
 
-
+    // når den kommer tilbage fra camera resetter den timeren og starter forfra
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -90,7 +91,7 @@ public class timer extends AppCompatActivity {
         updateCountDownText();
     }
 
-
+//som metoden siger updatere den view med text så den tæller ned
     private void updateCountDownText(){
         int minutes = (int) (mTimeLeft / 1000) / 60;
         int seconds = (int) (mTimeLeft / 1000) % 60;
@@ -100,30 +101,30 @@ public class timer extends AppCompatActivity {
         mTextViewTimer.setText(timeLeftFormatted);
     }
 
+    // diregere til camera activity or caller for et resultat
     private void directToCameraActivity() {
         Intent intent = new Intent(this, Camera.class);
         startActivityForResult(intent,1);
     }
 
 
-
+// når der er kommet et billede tilbage laver vi en thread som så kalder vores randome sample til vores resultat.
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // TODO Auto-generated method stub
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 ){
             if (resultCode == RESULT_OK){
-
+                // for at vise at vi har vores data fra cameraet og det var her vi skulle have haft billede processering.
                 Intent intent = data;
                 Bitmap bitmap = (Bitmap) intent.getParcelableExtra("PictureKey");
                 analyseBit = bitmap;
-//               randomSample = PictureSample(bitmap);
-                System.out.println("JEG ER FØR TRAAD");
+                // laver en thread hvor der skulle have været billede processering men nu bliver der genereret nogle random værdier
+                // disse gives til randomeSample
                 analyseThread = new Thread(new Runnable() {
                     @Override
                     public void run() {
                         while(running){
-                            System.out.println("JEG ER I TRAAD");
                             if(analyseBit != null){
                                 randomSample = PictureSample(analyseBit);
                                 running = false;
@@ -131,25 +132,23 @@ public class timer extends AppCompatActivity {
 
                     }
                 });
-//        analyseThread.start();
                analyseThread.start();
-                System.out.println("JEG ER EFTER TRAAD");
 
             }
         }
     }
 
 
-
+    // metode til at komme til result activity som tager vores sample
     private void directToResultActivity(RandomSample r) {
-
+        // vi sørger for at tråden bliver færdig først inden vi kan gå videre
         try {
             analyseThread.join();
         }catch (InterruptedException e) {
             e.printStackTrace();
         }
+        // opsætter vores intent og giver den de data som skal bruges i result viewet
         Intent intent = new Intent(getApplicationContext(), result.class);
-        System.out.println("START ACTIVITY " + r.createGlu());
         intent.putExtra("nameKey", r.createName());
         intent.putExtra("dateKey", r.createDate());
         intent.putExtra("leuKey", String.valueOf(r.createLeu()));
@@ -157,22 +156,17 @@ public class timer extends AppCompatActivity {
         intent.putExtra("bloKey", String.valueOf(r.createBlo()));
         intent.putExtra("gluKey", String.valueOf(r.createGlu()));
         intent.putExtra("nitKey", String.valueOf(r.createNit()));
-
-        System.out.println("START ACTIVITY");
         startActivity(intent);
     }
 
-
+// metoden hvor der skulle have prosseceret et billede til at give vores værdier.
     private RandomSample PictureSample(Bitmap bit){
         analyseBit = bit;
         RandomSample r = new RandomSample();
             return r;
     }
-    private void toastMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
-    }
-
+// sørger for at vores Threads er i sync
     @Override
     protected void onDestroy() {
         running = false;
