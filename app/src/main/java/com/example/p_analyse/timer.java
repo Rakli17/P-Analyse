@@ -26,9 +26,13 @@ public class timer extends AppCompatActivity {
 
     RandomSample randomSample;
 
+    // til at analysere bitmap
+    Bitmap analyseBit;
+
     //create Thread
     Thread analyseThread;
-
+    // to track Thread
+    volatile boolean running = true;
 
 
     @Override
@@ -41,6 +45,8 @@ public class timer extends AppCompatActivity {
         updateCountDownText();
 
         startTimer();
+
+
 
     }
 
@@ -107,9 +113,28 @@ public class timer extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 ){
             if (resultCode == RESULT_OK){
+
                 Intent intent = data;
                 Bitmap bitmap = (Bitmap) intent.getParcelableExtra("PictureKey");
-               randomSample = PictureSample();
+                analyseBit = bitmap;
+//               randomSample = PictureSample(bitmap);
+                System.out.println("JEG ER FØR TRAAD");
+                analyseThread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        while(running){
+                            System.out.println("JEG ER I TRAAD");
+                            if(analyseBit != null){
+                                randomSample = PictureSample(analyseBit);
+                                running = false;
+                                 }}
+
+                    }
+                });
+//        analyseThread.start();
+               analyseThread.start();
+                System.out.println("JEG ER EFTER TRAAD");
+
             }
         }
     }
@@ -118,7 +143,11 @@ public class timer extends AppCompatActivity {
 
     private void directToResultActivity(RandomSample r) {
 
-
+        try {
+            analyseThread.join();
+        }catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Intent intent = new Intent(getApplicationContext(), result.class);
         System.out.println("START ACTIVITY " + r.createGlu());
         intent.putExtra("nameKey", r.createName());
@@ -134,12 +163,26 @@ public class timer extends AppCompatActivity {
     }
 
 
-    private RandomSample PictureSample(){
+    private RandomSample PictureSample(Bitmap bit){
+        analyseBit = bit;
         RandomSample r = new RandomSample();
             return r;
     }
     private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        running = false;
+
+        super.onDestroy();
+        try {
+            analyseThread.join();
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
 
     }
 
