@@ -34,39 +34,21 @@ public class ViewSampleClass extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         dataList = new ArrayList<>();
+        //henter samples fra databsen
         dataList = mSamplehelper.getAllInfo();
+        //sender data over i recyclerview
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, dataList);
 
         rv.setAdapter(adapter);
 
+        //backbutton
         ((Button) findViewById(R.id.backToMain)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 directToMainActivity();
-                /*
-                RandomSample r = new RandomSample();
-                SampleClass data = new SampleClass(r.createName(), r.createDate(), r.createLeu(), r.createPro(), r.createBlo(), r.createGlu(), r.createNit());
-                if (mSamplehelper.addSample(data)) {
-                    toastMessage("New sample created");
-                    //mSamplehelper.updatePerson(data);
-                } else {
-                    toastMessage("Could not create new sample");
-                }
-                directToPreviousSampleActivity();*/
-
             }
         });
 
-    }
-
-    private void toastMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-
-    }
-
-    private void directToPreviousSampleActivity() {
-        Intent intent = new Intent(this, ViewSampleClass.class);
-        startActivity(intent);
     }
     private void directToMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);

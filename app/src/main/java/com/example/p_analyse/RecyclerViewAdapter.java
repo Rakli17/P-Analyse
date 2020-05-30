@@ -27,9 +27,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> gluList = new ArrayList<>();
     private ArrayList<String> nitList = new ArrayList<>();
 
+    // Herunder står der hvad context er, taget fra hjemmesiden:  https://developer.android.com/reference/android/content/Context
+    // Interface to global information about an application environment.
+    // This is an abstract class whose implementation is provided by the Android system.
+    // It allows access to application-specific resources and classes,
+    // as well as up-calls for application-level operations such as launching activities,
+    // broadcasting and receiving intents, etc.
     private Context mContext;
     SampleClass data;
 
+    //bliver kaldt fra viewSampleClass
     public RecyclerViewAdapter(Context context, ArrayList<SampleClass> dataList) {
         mDataList = dataList;
         mContext = context;
@@ -38,6 +45,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     //@NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        //Her sættes instanser af layout_listitem, ind i recyclerviewet.
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent, false);
         final ViewHolder holder = new ViewHolder(view);
         return holder;
@@ -46,11 +54,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: Called ");
+        //holder bliver sat, holder er de værdier der skal indsættes i recyclerviewet, position er den position de har i databasen
         data = mDataList.get(position);
         holder.tvName.setText(data.getName());
-        System.out.println(data.getName());
         holder.tvSampleDate.setText(data.getDate());
 
+        //For at sende data videre til DisplaySampleActivity lægges
+        // de over i arraylists der tager simple datatyper, da vi ikke kunne sende objekter.
+        // Objektet ville have være en sampleClass.
         nameList.add(data.getName());
         dateList.add(data.getDate());
         leuList.add(String.valueOf(data.getLeu()));
@@ -63,10 +74,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onBindViewHolder: Called " + mDataList.get(position));
-
-                // lav array for hver data
+                //sætter view til displaysampleactivity
                 Intent intent = new Intent(mContext, DisplaySampleActivity.class);
-                //intent.putExtra("myKey", mDataList.get(position));
+                //sender data over til displaySampleActivty
                 intent.putExtra("nameKey", nameList.get(position));
                 intent.putExtra("dateKey", dateList.get(position));
                 intent.putExtra("leuKey", leuList.get(position));
@@ -74,20 +84,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("bloKey", bloList.get(position));
                 intent.putExtra("gluKey", gluList.get(position));
                 intent.putExtra("nitKey", nitList.get(position));
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(intent);
 
             }
         });
     }
 
-
+    //includeres idet vi extender recycleview
     @Override
     public int getItemCount() {
         return mDataList.size();
     }
-
-    public class ViewHolder extends RecyclerView.ViewHolder /*implements View.OnClickListener*/ {
+    //opretter en viewholder, som er vores Layout_listitem.
+    // Det er denne der bliver lagt ind i recyclerviewet længere oppe i koden i denne klasse.
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvName;
         TextView tvSampleDate;

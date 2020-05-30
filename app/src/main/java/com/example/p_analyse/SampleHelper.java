@@ -15,7 +15,7 @@ class SampleHelper {
     private static final String DATABASE_NAME = "USERINFO.DB";
     private static final int DATABASE_VERSIONS = 1;
 
-
+    // opretter ny tabel
     public SampleHelper(Context context) {
         //   mDatabaseHelper = new DatabaseHelper(context);
         mSampleHelper = SampleHelperHelper.newInstance(context);
@@ -23,86 +23,7 @@ class SampleHelper {
         Log.e("DATABASE OPERATIONS", "Database created / opened..");
 
     }
-
-    /*public String selectName(String name){
-        String str = "";
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT "+ addDataClass.NewUserInfo.USER_NAME + " FROM "
-                + addDataClass.NewUserInfo.TABLE_NAME + " WHERE " + addDataClass.NewUserInfo.USER_NAME
-                + " = '" + name + "'";
-        Cursor data = db.rawQuery(query, null);
-
-        if(data.moveToFirst()){
-            str = data.getString(data.getColumnIndex("Content"));
-
-        }
-        return str;
-
-    }*/
-    public void selectDate(String date){
-
-    }
-    public void selectEmail(String email){
-
-    }
-    public boolean updatePerson(SampleClass p) {
-        SQLiteDatabase db = mSampleHelper.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(addSampleClass.NewSampleInfo.NAME, p.getName());
-        contentValues.put(addSampleClass.NewSampleInfo.DATE, p.getDate());
-        contentValues.put(addSampleClass.NewSampleInfo.LEU, p.getLeu());
-        contentValues.put(addSampleClass.NewSampleInfo.PRO, p.getPro());
-        contentValues.put(addSampleClass.NewSampleInfo.BLO, p.getBlo());
-        contentValues.put(addSampleClass.NewSampleInfo.GLU, p.getGlu());
-        contentValues.put(addSampleClass.NewSampleInfo.NIT, p.getNit());
-
-        int result = db.update(
-                addSampleClass.NewSampleInfo.TABLE_NAME,
-                contentValues, "name = ?",
-                new String[]{p.getName()}
-        );
-
-        if (result > 0) {
-            return true;
-        }
-        return false;
-    }
-    /*public ArrayList<SampleClass> findAllPersons() {
-
-        ArrayList<SampleClass> dataList = new ArrayList<>();
-
-        SQLiteDatabase db = mSampleHelper.getReadableDatabase();
-        Cursor cursor = db.query(
-                addSampleClass.NewSampleInfo.TABLE_NAME,
-                new String[]{
-                        addSampleClass.NewSampleInfo.NAME,
-                        addSampleClass.NewSampleInfo.DATE,
-                        addSampleClass.NewSampleInfo.LEU,
-                        addSampleClass.NewSampleInfo.PRO,
-                        addSampleClass.NewSampleInfo.BLO,
-                        addSampleClass.NewSampleInfo.GLU,
-                        addSampleClass.NewSampleInfo.NIT,
-                        },
-                null,
-                null,
-                null,
-                null,
-                null
-        );
-
-        if (cursor.moveToFirst()) {
-            while (!cursor.isAfterLast()) {
-                SampleClass p = SampleClass.getData(cursor);
-                if (p != null) {
-                    dataList.add(p);
-                }
-                cursor.moveToNext();
-            }
-            return dataList;
-        }
-        return dataList;
-        //return Collections.emptyList();
-    }*/
+    //tilføjer samples
     public boolean addSample(SampleClass p)
     {
         SQLiteDatabase db = mSampleHelper.getWritableDatabase();
@@ -124,12 +45,12 @@ class SampleHelper {
         return false;
     }
 
-    //slet data
+    //slet samples
     public void deleteSample(SampleClass p)
     {
+        //henter nuværende database
         SQLiteDatabase db = mSampleHelper.getWritableDatabase();
 
-        Integer iLeu = new Integer(p.getLeu());
         String query = "DELETE FROM " + addSampleClass.NewSampleInfo.TABLE_NAME + " WHERE "
                 + addSampleClass.NewSampleInfo.NAME + " = '" + p.getName() + "'" +
                 " AND " + addSampleClass.NewSampleInfo.DATE + " = '" + p.getDate() + "'" +
@@ -144,15 +65,8 @@ class SampleHelper {
         db.execSQL(query);
     }
 
-    //Get data
-    public Cursor getData(){
-        //retunerer alt data
+    //Bruges til at hentes databasen
 
-        SQLiteDatabase db = mSampleHelper.getWritableDatabase();
-        String query = "SELECT * FROM " + addSampleClass.NewSampleInfo.TABLE_NAME;
-        Cursor data = db.rawQuery(query, null);
-        return data;
-    }
     public ArrayList<SampleClass> getAllInfo()
     {
         ArrayList<SampleClass> dataList = new ArrayList<>();

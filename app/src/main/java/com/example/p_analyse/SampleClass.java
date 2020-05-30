@@ -5,9 +5,9 @@ import android.os.Parcelable;
 
 import java.io.Serializable;
 
-public class SampleClass implements Serializable {
+public class SampleClass {
     private int mLeu, mPro, mBlo, mGlu, mNit;
-   // private boolean mNit;
+
     String mDate = "dd-mm-yy";
     String mName;
     public SampleClass(){}
@@ -20,22 +20,7 @@ public class SampleClass implements Serializable {
         this.mBlo = blo;
         this.mGlu = glu;
         this.mNit = nit;
-
-
     }
-
-    protected SampleClass(Parcel in) {
-        mLeu = in.readInt();
-        mPro = in.readInt();
-        mBlo = in.readInt();
-        mGlu = in.readInt();
-        mNit = in.readInt();
-        mDate = in.readString();
-        mName = in.readString();
-    }
-
-
-
     public String getName() {
         return mName;
     }
@@ -51,8 +36,6 @@ public class SampleClass implements Serializable {
     public void setDate(String mDate) {
         this.mDate = mDate;
     }
-
-
 
     public int getLeu() {
         return mLeu;

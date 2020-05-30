@@ -2,6 +2,7 @@ package com.example.p_analyse;
 
 public class addSampleClass {
 
+    //bruges hver gang der skrives en query i sampleHelper og samplehelperhelper
     public static abstract class NewSampleInfo{
 
         public static final String NAME = "name";
@@ -12,7 +13,7 @@ public class addSampleClass {
         public static final String NIT = "nit";
         public static final String TABLE_NAME = "sample_info";
         public static final String DATE = "date";
-        public static final String COLUMN_TIMESTAMP = "timestamp";
+
 
     }
 }

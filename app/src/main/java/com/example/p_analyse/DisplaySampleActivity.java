@@ -25,11 +25,9 @@ public class DisplaySampleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display_results);
         final SampleHelper deleteSample = new SampleHelper(this);
-        //Intent intent = this.getIntent();
-        //Bundle bundle = intent.getExtras();
-        //Type object = (Type) bundle.getSerializable("KEY");
-        // Data data = (Data) bundle.getSerializable("KEY");
 
+
+        //tjekker om data er blevet sendt fra recyclerViewAdapter
         if (getIntent().hasExtra("nameKey")
                 && getIntent().hasExtra("dateKey")
                 && getIntent().hasExtra("leuKey")
@@ -38,6 +36,7 @@ public class DisplaySampleActivity extends AppCompatActivity {
                 && getIntent().hasExtra("gluKey")
                 && getIntent().hasExtra("nitKey")
         ) {
+            //henter denne data fra recyclerViewAdapter
             name = getIntent().getStringExtra("nameKey");
             date = getIntent().getStringExtra("dateKey");
             leu = getIntent().getStringExtra("leuKey");
@@ -46,9 +45,7 @@ public class DisplaySampleActivity extends AppCompatActivity {
             glu = getIntent().getStringExtra("gluKey");
             nit = getIntent().getStringExtra("nitKey");
 
-            //if(getIntent().hasExtra("KEY")){
-            Log.d(TAG, "Intent found");
-
+            // finder tilhørende textviews.
             mName = findViewById(R.id.displayName);
             mDate = findViewById(R.id.displayDate);
             mLeu = findViewById(R.id.leu_result);
@@ -57,6 +54,7 @@ public class DisplaySampleActivity extends AppCompatActivity {
             mGlu = findViewById(R.id.glu_result);
             mNit = findViewById(R.id.nit_result);
 
+            //textviews får værdierne
             mName.setText(name);
             mDate.setText(date);
             mLeu.setText(leu);
@@ -65,17 +63,18 @@ public class DisplaySampleActivity extends AppCompatActivity {
             mGlu.setText(glu);
             mNit.setText(nit);
 
-
+            //sletter sample
             ((Button) findViewById(R.id.deleteBtn)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    // sampleClass skal bruges nogle af værdierne som int
                     int ileu = Integer.parseInt(leu);
                     int ipro = Integer.parseInt(pro);
                     int iblo = Integer.parseInt(blo);
                     int iglu = Integer.parseInt(glu);
                     int init = Integer.parseInt(nit);
                     SampleClass s = new SampleClass(name, date, ileu, ipro, iblo, iglu, init);
+
                     deleteSample.deleteSample(s);
                     toastMessage("Sample deleted");
                     directToDisplay();

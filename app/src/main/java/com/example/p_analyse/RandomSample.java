@@ -3,22 +3,19 @@ package com.example.p_analyse;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
+//denne klasse opretter nogle random værdier, da vi ikke kunne skabe værdier ud fra opencv
 public class RandomSample {
-
-    ArrayList<SampleClass> mSample;
-    SampleClass sampleClass;
 
 
     public RandomSample(){
 
     }
-
-    public RandomSample(ArrayList<SampleClass> sample){
-        this.mSample = sample;
-    }
-
+    //blev brugt førhen da vi ville teste vores sytem
     public String createName(){
       double random =  Math.floor(Math.random()*3)+1;
 
@@ -33,17 +30,14 @@ public class RandomSample {
       }
     }
     public String createDate(){
-        double random =  Math.floor(Math.random()*3)+1;
+        String dateStr = "04/05/2010";
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
 
-        if (random == 1){
-            return "23-08-2020";
-        }
-        else if(random == 2){
-            return "06-12-2019";
-        }
-        else{
-            return "09-5-2020";
-        }
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = df.format(c);
+
+        return formattedDate;
 
     }
     public int createLeu(){
@@ -111,31 +105,12 @@ public class RandomSample {
                 return 111;
             }
         }
-
-
     public int createNit(){
-        double random = Math.floor(Math.random() * 2) + 1;
+        double random = Math.floor(Math.random() * 2);
         int rando = (int)random;
         return rando;
     }
-//String name, String date, int leu, int pro, int blo, int glu, boolean nit
-    public SampleClass createRndSample()
-    {
-        ArrayList<SampleClass> tempSample = new ArrayList<>();
-        RandomSample randomSample = new RandomSample();
-        int glu = randomSample.createGlu();
-        int blo =  randomSample.createBlo();
-        String date   = randomSample.createDate();
-        int leu =  randomSample.createLeu();
-        int nit = randomSample.createNit();
-        String name = randomSample.createName();
-        int pro = randomSample.createPro();
 
-        SampleClass s = new SampleClass(name, date, leu, pro, blo, glu, nit);
-
-        tempSample.add(s);
-        return s;
-    }
 
 
 }
