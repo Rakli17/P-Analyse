@@ -3,5 +3,8 @@
     <string name="information">Information</string>
     <string name="Test">Testet</string>
     <string name="back">tillbaka</string>
+    <string name="previousSamples">tidigare prover</string>
+    <string name="DeleteSample">Ta bort provet</string>
+    <string name="BackToMain">Huvudmeny</string>
 
 </resources>

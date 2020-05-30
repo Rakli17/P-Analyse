@@ -39,9 +39,11 @@ public class ViewSampleClass extends AppCompatActivity {
 
         rv.setAdapter(adapter);
 
-        ((Button) findViewById(R.id.createNewSamplebtn)).setOnClickListener(new View.OnClickListener() {
+        ((Button) findViewById(R.id.backToMain)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                directToMainActivity();
+                /*
                 RandomSample r = new RandomSample();
                 SampleClass data = new SampleClass(r.createName(), r.createDate(), r.createLeu(), r.createPro(), r.createBlo(), r.createGlu(), r.createNit());
                 if (mSamplehelper.addSample(data)) {
@@ -50,7 +52,7 @@ public class ViewSampleClass extends AppCompatActivity {
                 } else {
                     toastMessage("Could not create new sample");
                 }
-                directToPreviousSampleActivity();
+                directToPreviousSampleActivity();*/
 
             }
         });
@@ -64,6 +66,10 @@ public class ViewSampleClass extends AppCompatActivity {
 
     private void directToPreviousSampleActivity() {
         Intent intent = new Intent(this, ViewSampleClass.class);
+        startActivity(intent);
+    }
+    private void directToMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

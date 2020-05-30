@@ -5,12 +5,21 @@
     android:id="@+id/layout_listItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="15dp">
+    android:backgroundTint="@android:color/darker_gray"
+    android:backgroundTintMode="add"
+    android:clipToPadding="false"
+    android:forceDarkAllowed="false"
+    android:foregroundTint="#530C0C"
+    android:padding="15dp"
+    android:background="#35323A"
+    android:visibility="visible"
+    >
 
     <TextView
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableBottom="@color/colorAccent"
         android:gravity="left"
         android:text="name"
         android:textSize="20sp"

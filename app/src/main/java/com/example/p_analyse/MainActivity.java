@@ -1,9 +1,6 @@
 package com.example.p_analyse;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.ListFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +23,7 @@ public int mCount = 0;
             }
         });
 
-        ((Button) findViewById(R.id.cameraButton)).setOnClickListener(new View.OnClickListener() {
+        ((Button) findViewById(R.id.preSamBtn)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 directToCameraActivity();
