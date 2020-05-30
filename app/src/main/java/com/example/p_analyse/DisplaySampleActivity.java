@@ -2,7 +2,10 @@ package com.example.p_analyse;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,14 +27,14 @@ public class DisplaySampleActivity extends AppCompatActivity {
         //Type object = (Type) bundle.getSerializable("KEY");
         // Data data = (Data) bundle.getSerializable("KEY");
 
-      /*  if(getIntent().hasExtra("nameKey")
-                && getIntent().hasExtra("nateKey")
+        if(getIntent().hasExtra("nameKey")
+                && getIntent().hasExtra("dateKey")
                 && getIntent().hasExtra("leuKey")
                 && getIntent().hasExtra("proKey")
                 && getIntent().hasExtra("bloKey")
                 && getIntent().hasExtra("gluKey")
                 && getIntent().hasExtra("nitKey")
-        )*/
+        ){
             String name = getIntent().getStringExtra("nameKey");
             String date = getIntent().getStringExtra("dateKey");
             String leu = getIntent().getStringExtra("leuKey");
@@ -59,6 +62,26 @@ public class DisplaySampleActivity extends AppCompatActivity {
             mGlu.setText(glu);
             mNit.setText(nit);
 
+    }
+
+        ((Button) findViewById(R.id.deleteBtn)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SampleClass data = new SampleClass(r.createName(), r.createDate(), r.createLeu(), r.createPro(), r.createBlo(),r.createGlu(), r.createNit());
+
+                if(mSamplehelper.addSample(data)){
+                    toastMessage("New sample created");
+                    mSamplehelper.updatePerson(data);
+                }else{
+                    toastMessage("Could not create new sample");
+                }
+
+            }
+        });
+    }
+    private void toastMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
     }
 }
