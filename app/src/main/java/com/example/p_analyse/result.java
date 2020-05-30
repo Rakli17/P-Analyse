@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class result extends AppCompatActivity {
     private static final String TAG = "DisplayActivity";
     TextView mName, mDate, mLeu, mPro, mBlo, mGlu, mNit;
-    RecyclerViewAdapter Adapter;
     SampleClass data;
     SampleHelper mSamplehelper;
     EditText writeableName;
@@ -26,9 +25,8 @@ public class result extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-
+// henter navn ind fra bruger til at gemme som data settets ID
         writeableName = (EditText) findViewById(R.id.nameText);
-
         ((Button) findViewById(R.id.btn_back)).setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -37,23 +35,7 @@ public class result extends AppCompatActivity {
             }
         });
 
-        //Intent intent = this.getIntent();
-        //Bundle bundle = intent.getExtras();
-        //Type object = (Type) bundle.getSerializable("KEY");
-        // Data data = (Data) bundle.getSerializable("KEY");
-
-      /*  if(getIntent().hasExtra("nameKey")
-                && getIntent().hasExtra("dateKey")
-                && getIntent().hasExtra("leuKey")
-                && getIntent().hasExtra("proKey")
-                && getIntent().hasExtra("bloKey")
-                && getIntent().hasExtra("gluKey")
-                && getIntent().hasExtra("nitKey")
-        ) {*/
-           // data = getIntent().getExtras().getParcelable("data");
-            //System.out.println("data   " + data.getName());
-
-            //final String name = getIntent().getStringExtra("nameKey");
+// henter restende data ind fra Timer klasse
              name = writeableName.getText().toString();
         System.out.println();
              date = getIntent().getStringExtra("dateKey");
@@ -62,11 +44,9 @@ public class result extends AppCompatActivity {
              blo = getIntent().getStringExtra("bloKey");
              glu = getIntent().getStringExtra("gluKey");
              nit = getIntent().getStringExtra("nitKey");
-
-            //if(getIntent().hasExtra("KEY")){
             Log.d(TAG, "Intent found");
 
-        //mName = findViewById(R.id.displayName2);
+// lokalisere tekst view med id
         mDate = findViewById(R.id.displayDate2);
         mLeu = findViewById(R.id.leu_result2);
         mPro = findViewById(R.id.pro_result2);
@@ -74,22 +54,21 @@ public class result extends AppCompatActivity {
         mGlu = findViewById(R.id.glu_result2);
         mNit = findViewById(R.id.nit_result2);
 
-
-        //mName.setText(name);
+// sætter data ind i tekst view
         mDate.setText(date);
         mLeu.setText(leu);
         mPro.setText(pro);
         mBlo.setText(blo);
         mGlu.setText(glu);
         mNit.setText(nit);
-
+// laver Strings om til int
         ileu = Integer.parseInt(leu);
         ipro = Integer.parseInt(pro);
         iblo = Integer.parseInt(blo);
         iglu = Integer.parseInt(glu);
         init = Integer.parseInt(nit);
 
-
+// metode det sender data til database via SampleHelper
         mSamplehelper = new SampleHelper(this);
         ((Button) findViewById(R.id.btn_save)).setOnClickListener(new View.OnClickListener() {
 
@@ -106,12 +85,13 @@ public class result extends AppCompatActivity {
                 }
             }
         });
-
     }
+// metode der laver toast besked når der bliver sat data i database
     private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-
     }
+
+// metode der kalder mainActivity
     private void directToMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

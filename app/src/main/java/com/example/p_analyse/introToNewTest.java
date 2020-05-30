@@ -24,11 +24,6 @@ public class introToNewTest extends AppCompatActivity {
 
 
 
-
-
-
-
-
     private void directToTimerActivity() {
         Intent intent = new Intent(this, timer.class);
         startActivity(intent);

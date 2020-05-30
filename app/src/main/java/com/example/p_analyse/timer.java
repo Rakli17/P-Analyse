@@ -38,14 +38,9 @@ public class timer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
-
         mTextViewTimer = findViewById(R.id.tvTimer);
-
         updateCountDownText();
-
         startTimer();
-
-
 
     }
 
@@ -74,7 +69,6 @@ public class timer extends AppCompatActivity {
             }
         }.start();
         mTimerIsRunning = true;
-
     }
 
 

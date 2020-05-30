@@ -26,36 +26,26 @@ import static org.opencv.imgproc.Imgproc.cvtColor;
 public class  Camera extends AppCompatActivity {
 
     ImageView imageView;
-   // int numberOfPicture = getIntent().getIntExtra("countKey",0);
-
+// Kameraet bliver tændt med det samme i onCreate via intent
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
         imageView = findViewById(R.id.pictureView);
-
+// kameraet bliver åbnet via intent action, og retunere når billedet er godkendt af bruger
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, 1);
-
-
-
     }
-
+// metoden bliver kaldt når kameraet terminer
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-
-
         finishActivity(bitmap);
     }
 
-    private void directToTimerActivity() {
-        Intent intent = new Intent(this, timer.class);
-      //  intent.putExtra("numberOfPictureKey",numberOfPicture);
-        startActivity(intent);
-    }
-
+// metoden sender intent med bitmap med tilbage til activiteten før
+// og der efter destruere metoden Camera activitete
     private void finishActivity(Bitmap b) {
         Intent intent = new Intent();
         intent.putExtra("PictureKey",b);
