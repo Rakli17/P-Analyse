@@ -152,6 +152,7 @@ class SampleHelper {
         String SQL = "SELECT * FROM " + addSampleClass.NewSampleInfo.TABLE_NAME;/*+ " ORDER BY " +
                 addDataClass.NewUserInfo.COLUMN_TIMESTAMP + " DESC"*/
         SQLiteDatabase db = mSampleHelper.getWritableDatabase();
+        Log.d("DatabaseHelper", "deleteName: query " + db);
         Cursor cursor = db.rawQuery(SQL, null);
         if(cursor.moveToFirst()){
             do{

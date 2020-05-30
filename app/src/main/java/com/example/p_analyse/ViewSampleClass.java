@@ -42,10 +42,10 @@ public class ViewSampleClass extends AppCompatActivity {
             public void onClick(View v) {
                 RandomSample r = new RandomSample();
                 SampleClass data = new SampleClass(r.createName(), r.createDate(), r.createLeu(), r.createPro(), r.createBlo(),r.createGlu(), r.createNit());
-                System.out.println(mSamplehelper.getData());
+
                 if(mSamplehelper.addSample(data)){
                     toastMessage("New sample created");
-                    System.out.println(mSamplehelper.getData());
+                    mSamplehelper.updatePerson(data);
                 }else{
                     toastMessage("Could not create new sample");
                 }

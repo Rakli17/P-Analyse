@@ -131,14 +131,6 @@ public class RandomSample {
         SampleClass s = new SampleClass(name, date, leu, pro, blo, glu, nit);
 
         tempSample.add(s);
-
-
-        for (int i = 0; i < 100; i++){
-
-        System.out.println(tempSample.get(i));
-
-
-    }
         return s;
     }
 
