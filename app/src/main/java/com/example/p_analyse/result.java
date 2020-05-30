@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,13 +18,16 @@ public class result extends AppCompatActivity {
     RecyclerViewAdapter Adapter;
     SampleClass data;
     SampleHelper mSamplehelper;
-    // Cursor cursor;
+    EditText writeableName;
+    String name, date, leu, pro, blo, glu, nit;
+    int ileu, ipro, iblo, iglu, init;
     //@Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
 
+        writeableName = (EditText) findViewById(R.id.nameText);
 
         ((Button) findViewById(R.id.btn_back)).setOnClickListener(new View.OnClickListener() {
 
@@ -49,18 +53,20 @@ public class result extends AppCompatActivity {
            // data = getIntent().getExtras().getParcelable("data");
             //System.out.println("data   " + data.getName());
 
-            final String name = getIntent().getStringExtra("nameKey");
-            String date = getIntent().getStringExtra("dateKey");
-            String leu = getIntent().getStringExtra("leuKey");
-            String pro = getIntent().getStringExtra("proKey");
-            String blo = getIntent().getStringExtra("bloKey");
-            String glu = getIntent().getStringExtra("gluKey");
-            String nit = getIntent().getStringExtra("nitKey");
+            //final String name = getIntent().getStringExtra("nameKey");
+             name = writeableName.getText().toString();
+        System.out.println();
+             date = getIntent().getStringExtra("dateKey");
+             leu = getIntent().getStringExtra("leuKey");
+             pro = getIntent().getStringExtra("proKey");
+             blo = getIntent().getStringExtra("bloKey");
+             glu = getIntent().getStringExtra("gluKey");
+             nit = getIntent().getStringExtra("nitKey");
 
             //if(getIntent().hasExtra("KEY")){
             Log.d(TAG, "Intent found");
 
-        mName = findViewById(R.id.displayName2);
+        //mName = findViewById(R.id.displayName2);
         mDate = findViewById(R.id.displayDate2);
         mLeu = findViewById(R.id.leu_result2);
         mPro = findViewById(R.id.pro_result2);
@@ -69,7 +75,7 @@ public class result extends AppCompatActivity {
         mNit = findViewById(R.id.nit_result2);
 
 
-        mName.setText(name);
+        //mName.setText(name);
         mDate.setText(date);
         mLeu.setText(leu);
         mPro.setText(pro);
@@ -77,18 +83,21 @@ public class result extends AppCompatActivity {
         mGlu.setText(glu);
         mNit.setText(nit);
 
-        int ileu = Integer.parseInt(leu);
-        int ipro = Integer.parseInt(pro);
-        int iblo = Integer.parseInt(blo);
-        int iglu = Integer.parseInt(glu);
-        int init = Integer.parseInt(nit);
+        ileu = Integer.parseInt(leu);
+        ipro = Integer.parseInt(pro);
+        iblo = Integer.parseInt(blo);
+        iglu = Integer.parseInt(glu);
+        init = Integer.parseInt(nit);
 
-        data = new SampleClass(name, date, ileu, ipro, iblo, iglu, init);
+
         mSamplehelper = new SampleHelper(this);
         ((Button) findViewById(R.id.btn_save)).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                System.out.println(writeableName);
+                data = new SampleClass(writeableName.getText().toString(), date, ileu, ipro, iblo, iglu, init);
+                System.out.println("Name :  " + data.getName());
                 if(mSamplehelper.addSample(data)) {
                     toastMessage("New sample created");
                     directToMainActivity();

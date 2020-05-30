@@ -4,6 +4,9 @@
     <string name="Test">Testet</string>
     <string name="back">tillbaka</string>
     <string name="start">start</string>
+    <string name="previousSample">Tidigare Prover</string>
+    <string name="BackToMain">Huvedmeny</string>
+    <string name="DeleteSample">Ta bort provet</string>
     <string name="intro">  "GUIDE FÖR TESTNING "
                     "1. Doppa alla testfält på remsan i urinen och registrera omedelbart testremsan. Börja tidtagningen om remsan är visuellt avläsad. OBS! ID-bandet kan doppas i urin och kontrolllösningar. "
                     "2. Dra kanten på remsan mot kanten på urinbehållaren för att ta bort överskott av urin. Och låt kanten droppa på en pappershandduk eller pappershandduk om CLINITEK 50 eller CLINITEK Status®-analysatorer används. Dropp krävs inte för visuell läsning eller användning. CLINITEK Advantus® Analyzer. "

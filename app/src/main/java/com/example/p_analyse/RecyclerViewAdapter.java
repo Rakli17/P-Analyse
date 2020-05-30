@@ -48,6 +48,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Log.d(TAG, "onBindViewHolder: Called ");
         data = mDataList.get(position);
         holder.tvName.setText(data.getName());
+        System.out.println(data.getName());
         holder.tvSampleDate.setText(data.getDate());
 
         nameList.add(data.getName());
