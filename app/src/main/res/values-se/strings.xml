@@ -13,5 +13,6 @@
                     "3.	tryck start ",</string>
     <string name="save">Gem og Afslut</string>
     <string name="exit">Afslut</string>
+    <string name="newTest">nytt test</string>
 
 </resources>
